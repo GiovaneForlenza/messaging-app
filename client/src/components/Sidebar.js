@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
 
 import "../style/side.scss";
 import "../style/global.scss";
 
 import ProfilePicture from "./ProfilePicture";
+import { UserContext } from "../contexts/UserContext";
 
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -11,10 +13,24 @@ import Conversation from "./Conversation";
 
 function Sidebar() {
   const [doesSearchHaveFocus, setDoesSearchHaveFocus] = useState(false);
+  const [users, setUsers] = useState([]);
+
+  const { userId } = useContext(UserContext);
 
   const setSearchFocus = (hasFocus) => {
     setDoesSearchHaveFocus(hasFocus);
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/getUserFromId", { userId })
+      .then((response) => {
+        console.log(response);
+      });
+    axios.get("http://localhost:3001/getUsers").then((response) => {
+      setUsers(response.data);
+    });
+  }, []);
 
   return (
     <div className="sidebar-container">
@@ -51,23 +67,9 @@ function Sidebar() {
         </div>
       </div>
       <div className="conversations-container">
-        <Conversation />
-        <Conversation />
-        <Conversation active />
-        <Conversation />
-        <Conversation />
-        <Conversation />
-        <Conversation />
-        <Conversation />
-        <Conversation />
-        <Conversation />
-        <Conversation />
-        <Conversation />
-        <Conversation />
-        <Conversation />
-        <Conversation />
-        <Conversation />
-        <Conversation />
+        {users.map((user) => {
+          return <Conversation key={user.user_id} name={user.user_name} />;
+        })}
       </div>
     </div>
   );

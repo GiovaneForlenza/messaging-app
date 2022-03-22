@@ -1,16 +1,13 @@
-import logo from "./logo.svg";
 import "./App.css";
 
-import Sidebar from "./components/Sidebar";
-import Chat from "./components/Chat";
+import React, { useContext } from "react";
+import Home from "./pages/Home";
+import { UserContext } from "./contexts/UserContext";
+import LogIn from "./pages/LogIn";
 
 function App() {
-  return (
-    <div className="App">
-      <Sidebar />
-      <Chat />
-    </div>
-  );
+  const { isUserLoggedIn } = useContext(UserContext);
+  return <div className="App">{isUserLoggedIn ? <Home /> : <LogIn />}</div>;
 }
 
 export default App;

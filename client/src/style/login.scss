@@ -1,0 +1,36 @@
+@import "./global.scss";
+
+.login-container {
+  padding: 20px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.09);
+  border-radius: 20px;
+  background: rgb(255, 254, 252);
+  .line {
+    margin: 10px;
+    user-select: none;
+    .title {
+      font-size: 20px;
+    }
+    .login-button-container {
+      width: 100px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $color-viewed-message;
+      box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.09);
+      border-radius: 5px;
+    }
+    select {
+      font-size: 20px;
+      // border: none;
+      background: transparent;
+      padding: 5px;
+    }
+  }
+}
