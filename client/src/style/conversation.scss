@@ -1,0 +1,31 @@
+@import "./global.scss";
+
+.conversation-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  box-sizing: border-box;
+  background: $color-dark-background-2;
+  border-bottom: 2px $color-gray-border solid;
+  .content {
+    width: 70%;
+    .line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .title {
+        color: $color-text-primary;
+        font-size: 20px;
+      }
+      .date-time,
+      .last-message {
+        color: $color-text-secondary;
+      }
+    }
+  }
+}
+
+.conversation-container.active {
+  background: $color-dark-background-3;
+}

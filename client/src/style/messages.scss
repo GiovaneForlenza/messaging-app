@@ -1,0 +1,54 @@
+@import "./global.scss";
+
+.messages {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  .line {
+    padding: 5px 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 10px 0;
+
+    .message-container {
+      width: auto;
+      max-width: 400px;
+      width: fit-content;
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: $color-dark-background-1;
+      .message {
+        margin: 0 5px;
+        font-size: 17px;
+        color: $color-text-primary;
+        text-align: left;
+        width: fit-content;
+      }
+      .lower {
+        margin-top: 10px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        .time {
+          font-size: 13px;
+          margin: 0 5px;
+          color: $color-text-secondary;
+        }
+        .status-container {
+          height: 15px;
+        }
+      }
+    }
+  }
+  .line.sent {
+    align-items: flex-end;
+    .message-container {
+      background: $color-green-message;
+    }
+  }
+}

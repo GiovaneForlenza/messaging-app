@@ -1,0 +1,44 @@
+@import "./global.scss";
+
+.sidebar-container {
+  user-select: none;
+  background: $color-dark-background-2;
+  width: 30%;
+  height: 100vh;
+  border-right: 1px $color-gray-border solid;
+  .search-container {
+    padding: 10px;
+    box-sizing: border-box;
+    background: $color-dark-background-2;
+    border-bottom: 1px $color-gray-border solid;
+    .search-box-container {
+      color: $color-text-secondary;
+      background: $color-dark-background-1;
+      height: 40px;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .search {
+        width: 80%;
+        input {
+          font-size: 16px;
+          color: $color-text-secondary;
+          width: 100%;
+          background: transparent;
+          border: none;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+  .conversations-container {
+    height: 85%;
+    overflow-y: scroll;
+  }
+}
