@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "../style/login.scss";
 import { UserContext } from "../contexts/UserContext";
+import { serverURL } from "../variables";
 
 function LogIn() {
   const [users, setUsers] = useState([]);
@@ -9,7 +10,7 @@ function LogIn() {
   const { setIsUserLoggedIn, setUserId } = useContext(UserContext);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/getUsers").then((response) => {
+    axios.get(serverURL + "/getUsers").then((response) => {
       setUsers(response.data);
     });
   }, []);

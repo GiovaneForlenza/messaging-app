@@ -11,23 +11,23 @@ import { BsSearch } from "react-icons/bs";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import Conversation from "./Conversation";
 
+import { serverURL } from "../variables";
+
 function Sidebar() {
   const [doesSearchHaveFocus, setDoesSearchHaveFocus] = useState(false);
   const [users, setUsers] = useState([]);
 
-  const { userId } = useContext(UserContext);
+  const { userId, userName, setUserName } = useContext(UserContext);
 
   const setSearchFocus = (hasFocus) => {
     setDoesSearchHaveFocus(hasFocus);
   };
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/getUserFromId", { userId })
-      .then((response) => {
-        console.log(response);
-      });
-    axios.get("http://localhost:3001/getUsers").then((response) => {
+    axios.post(serverURL + "/getUserFromId", { userId }).then((response) => {
+      setUserName(response.data[0].user_name);
+    });
+    axios.get(serverURL + "/getUsers").then((response) => {
       setUsers(response.data);
     });
   }, []);
@@ -36,7 +36,7 @@ function Sidebar() {
     <div className="sidebar-container">
       <div className="profile-container">
         <ProfilePicture />
-        <div className="name">Giovane Forlenza</div>
+        <div className="name">{userName}</div>
       </div>
       <div className="search-container">
         <div className="search-box-container">
@@ -68,7 +68,14 @@ function Sidebar() {
       </div>
       <div className="conversations-container">
         {users.map((user) => {
-          return <Conversation key={user.user_id} name={user.user_name} />;
+          if (user.user_id !== parseInt(userId))
+            return (
+              <Conversation
+                key={user.user_id}
+                name={user.user_name}
+                conversationUserId={user.user_id}
+              />
+            );
         })}
       </div>
     </div>

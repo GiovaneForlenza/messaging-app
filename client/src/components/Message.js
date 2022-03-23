@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsCheck2All } from "react-icons/bs";
+import { ChatContext } from "../contexts/ChatContext";
+import { UserContext } from "../contexts/UserContext";
+import { getMessageTime } from "../helper";
 import "../style/messages.scss";
-function Message({ sent, seen }) {
+function Message({ sent, seen, message }) {
+  const { activeChat } = useContext(ChatContext);
+  const { userId } = useContext(UserContext);
+
   return (
-    <div className={`line  ${sent && "sent"}`}>
+    <div
+      className={`line  ${message.message_from === parseInt(userId) && "sent"}`}
+    >
       <div className="message-container">
-        <div className="message">This is the content of the message</div>
+        <div className="message">{message.message_text}</div>
         <div className="lower">
-          <div className="time">9:45pm</div>
-          {sent && (
+          <div className="time">
+            {message.time_sent ? (
+              getMessageTime(message.time_sent)
+            ) : (
+              <span> 9:45pm</span>
+            )}
+          </div>
+          {message.message_from === parseInt(userId) && (
             <div className="status-container">
               <BsCheck2All
                 style={{

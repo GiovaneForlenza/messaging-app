@@ -32,7 +32,9 @@
     .messages {
       height: 90%;
       width: 100%;
-      // border: 1px solid #fff;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
     }
     .send-message-container {
       display: flex;
@@ -79,5 +81,14 @@
         }
       }
     }
+  }
+  .no-chat-selected {
+    background: $color-dark-background-3;
+    height: 100%;
+    color: $color-text-primary;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

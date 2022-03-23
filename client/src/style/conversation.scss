@@ -8,15 +8,22 @@
   box-sizing: border-box;
   background: $color-dark-background-2;
   border-bottom: 2px $color-gray-border solid;
+  &:hover {
+    cursor: pointer;
+  }
   .content {
     width: 70%;
     .line {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      .title {
+      .name {
         color: $color-text-primary;
         font-size: 20px;
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .date-time,
       .last-message {
