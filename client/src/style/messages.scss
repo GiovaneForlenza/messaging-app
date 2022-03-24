@@ -2,6 +2,7 @@
 
 .messages {
   overflow-y: scroll;
+  height: auto;
   scroll-behavior: smooth;
   .line {
     padding: 5px 30px;
@@ -10,7 +11,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
-    margin: 10px 0;
+    margin: 5px 0;
 
     .message-container {
       width: auto;
@@ -21,7 +22,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: $color-dark-background-1;
+      background-color: $color-dark-background-1;
+
+      &:hover .message-action-container {
+        opacity: 1;
+      }
       .message {
         margin: 0 5px;
         font-size: 17px;
@@ -34,6 +39,7 @@
         display: flex;
         align-items: flex-end;
         justify-content: center;
+        user-select: none;
         .time {
           font-size: 13px;
           margin: 0 5px;
@@ -48,7 +54,7 @@
   .line.sent {
     align-items: flex-end;
     .message-container {
-      background: $color-green-message;
+      background-color: $color-green-message;
     }
   }
 }

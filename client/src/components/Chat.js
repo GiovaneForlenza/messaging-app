@@ -6,19 +6,51 @@ import ProfilePicture from "./ProfilePicture";
 import Message from "./Message";
 import { ChatContext } from "../contexts/ChatContext";
 
-import {
-  BsSearch,
-  BsThreeDotsVertical,
-  BsEmojiSmile,
-  BsFillMicFill,
-} from "react-icons/bs";
-import { AiOutlinePaperClip } from "react-icons/ai";
+import { serverURL } from "../variables";
+
+import { BsSearch, BsThreeDotsVertical } from "react-icons/bs";
+import SendMessageContainer from "./SendMessageContainer";
 import { UserContext } from "../contexts/UserContext";
+
+import axios from "axios";
 
 function Chat() {
   const style = { width: "25px", height: "25px" };
 
-  const { activeChat, chatName, messages } = useContext(ChatContext);
+  const { activeChat, chatName, messages, setMessages, setWritingMessage } =
+    useContext(ChatContext);
+
+  const { userId } = useContext(UserContext);
+
+  function sendMessage(message) {
+    var today = new Date();
+    var date = `${today.getFullYear()}-${
+      today.getMonth() + 1
+    }-${today.getDate()}`;
+    var today = new Date();
+    var time = `${today.getHours()}:${today.getMinutes()}:${
+      today.getSeconds() < 10 ? "0" + today.getSeconds() : today.getSeconds()
+    }`;
+    let dateTime = `${date} ${time}`;
+    let trimmedMessage = message.trim();
+    if (message.length > 0) {
+      axios.post(serverURL + "/sendMessage", {
+        trimmedMessage,
+        userId,
+        activeChat,
+        dateTime,
+      });
+      axios
+        .post(serverURL + "/getMessages", {
+          userId,
+          conversationUserId: activeChat,
+        })
+        .then((response) => {
+          setMessages(response.data);
+        });
+      setWritingMessage("");
+    }
+  }
 
   useEffect(() => {
     if (activeChat) {
@@ -52,32 +84,9 @@ function Chat() {
               ) : (
                 <h1>No messages</h1>
               )}
-              {/* <Message />
-              <Message sent seen />
-              <Message sent seen />
-              <Message />
-              <Message sent seen />
-              <Message sent seen /> */}
               <div className="anchor" id="messages-anchor"></div>
             </div>
-            <div className="send-message-container">
-              <div className="controls">
-                <div className="control">
-                  <BsEmojiSmile style={style} />
-                </div>
-                <div className="control">
-                  <AiOutlinePaperClip style={style} />
-                </div>
-              </div>
-              <div className="message-box">
-                <input type="text" placeholder="Type a message" />
-              </div>
-              <div className="controls">
-                <div className="control">
-                  <BsFillMicFill style={style} />
-                </div>
-              </div>
-            </div>
+            <SendMessageContainer sendMessage={sendMessage} />
           </div>
         </>
       ) : (

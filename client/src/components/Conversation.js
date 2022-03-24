@@ -5,22 +5,32 @@ import { ChatContext } from "../contexts/ChatContext";
 import { serverURL } from "../variables";
 import axios from "axios";
 import { UserContext } from "../contexts/UserContext";
+import { getUpdatedMessages } from "../helper";
 
 function Conversation({ name, conversationUserId }) {
-  const { activeChat, setActiveChat, setChatName, setMessages } =
-    useContext(ChatContext);
+  const {
+    activeChat,
+    setActiveChat,
+    setChatName,
+    setMessages,
+    setWritingMessage,
+  } = useContext(ChatContext);
   const { userId } = useContext(UserContext);
   const [lastMessageSent, setLastMessageSent] = useState("");
 
-  function handleClick() {
+  const handleClick = () => {
     setActiveChat(conversationUserId);
     setChatName(name);
     axios
-      .post(serverURL + "/getMessages", { userId, activeChat })
+      .post(serverURL + "/getMessages", {
+        userId,
+        conversationUserId,
+      })
       .then((response) => {
         setMessages(response.data);
       });
-  }
+    setWritingMessage("");
+  };
 
   useEffect(() => {
     const parsedId = parseInt(conversationUserId);
@@ -28,7 +38,6 @@ function Conversation({ name, conversationUserId }) {
       .post(serverURL + "/getLastMessage", { userId, parsedId })
       .then((response) => {
         setLastMessageSent(response.data[0].message_text);
-        console.log(response.data[0].message_text);
       });
   }, []);
 

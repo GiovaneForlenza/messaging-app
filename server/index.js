@@ -50,7 +50,7 @@ app.post("/getUserFromId", (req, res) => {
 
 app.post("/getMessages", (req, res) => {
   const messageFrom = req.body.userId;
-  const messageTo = req.body.activeChat;
+  const messageTo = req.body.conversationUserId;
   db.query(
     GET_MESSAGES_SQL,
     [messageFrom, messageTo, messageTo, messageFrom],
@@ -70,11 +70,20 @@ app.post("/getLastMessage", (req, res) => {
     (error, rows) => {
       if (error) throw error;
       res.send(rows);
-      console.log(rows);
     }
   );
 });
 
+app.post("/sendMessage", (req, res) => {
+  const message = req.body.trimmedMessage;
+  const messageTo = req.body.activeChat;
+  const messageFrom = req.body.userId;
+  const dateTime = req.body.dateTime;
+  db.query(
+    `INSERT INTO messages(message_from, message_to, message_text, time_sent)VALUES(?,?,?,?)`,
+    [messageFrom, messageTo, message, dateTime]
+  );
+});
 app.listen(process.env.SERVER_PORT, () => {
   console.log("running server on " + process.env.SERVER_PORT);
 });

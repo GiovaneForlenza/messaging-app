@@ -4,6 +4,7 @@ import { ChatContext } from "../contexts/ChatContext";
 import { UserContext } from "../contexts/UserContext";
 import { getMessageTime } from "../helper";
 import "../style/messages.scss";
+import MessageAction from "./MessageAction";
 function Message({ sent, seen, message }) {
   const { activeChat } = useContext(ChatContext);
   const { userId } = useContext(UserContext);
@@ -33,6 +34,7 @@ function Message({ sent, seen, message }) {
               />
             </div>
           )}
+          <MessageAction />
         </div>
       </div>
     </div>

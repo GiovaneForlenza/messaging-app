@@ -1,0 +1,11 @@
+@import "../style/global";
+
+.options-modal-container {
+  width: 150px;
+  height: 200px;
+  background: #0f0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
