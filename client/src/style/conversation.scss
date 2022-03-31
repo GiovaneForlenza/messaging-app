@@ -10,6 +10,7 @@
   border-bottom: 2px $color-gray-border solid;
   &:hover {
     cursor: pointer;
+    background: $color-dark-background-1;
   }
   .content {
     width: 70%;

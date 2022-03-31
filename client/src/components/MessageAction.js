@@ -7,12 +7,13 @@ import OptionsModal from "./ActionsModal";
 import { ActionsModalContext } from "../contexts/ActionsModalContext";
 
 function MessageAction() {
-  const { setShowModal, modalX, setModalX, modalY, setModalY } =
+  const { setShowModal, setModalX, setModalY, setModalType } =
     useContext(ActionsModalContext);
 
   function handleClick(e) {
     setModalX(e.clientX);
     setModalY(e.clientY);
+    setModalType("message");
     setShowModal(true);
   }
 

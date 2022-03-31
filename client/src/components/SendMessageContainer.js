@@ -33,7 +33,6 @@ function SendMessageContainer({ sendMessage }) {
             placeholder="Type a message"
             onChange={(e) => {
               setWritingMessage(e.target.value);
-              console.log(writingMessage);
             }}
             value={writingMessage}
           />

@@ -10,6 +10,8 @@ $color-dark-background-1: #202c33;
 $color-dark-background-2: #111b20;
 $color-dark-background-3: #2a3942;
 $color-dark-background-4: #0b141a;
+$box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.09);
+$box-shadow-2: -5px -5px 5px rgba(0, 0, 0, 0.15);
 
 .profile-container,
 .chat-container .header-container {
@@ -28,12 +30,4 @@ $color-dark-background-4: #0b141a;
 .sidebar-container .profile-container,
 .chat-container .header-container {
   background-color: $color-dark-background-1;
-}
-
-.profile-picture {
-  // width: 50px;
-  // height: 50px;
-  // border: 1px solid #000;
-  // border-radius: 50px;
-  // overflow: hidden;
 }

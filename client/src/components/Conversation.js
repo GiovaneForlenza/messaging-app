@@ -6,6 +6,7 @@ import { serverURL } from "../variables";
 import axios from "axios";
 import { UserContext } from "../contexts/UserContext";
 import { getUpdatedMessages } from "../helper";
+import { ActionsModalContext } from "../contexts/ActionsModalContext";
 
 function Conversation({ name, conversationUserId }) {
   const {
@@ -17,6 +18,7 @@ function Conversation({ name, conversationUserId }) {
   } = useContext(ChatContext);
   const { userId } = useContext(UserContext);
   const [lastMessageSent, setLastMessageSent] = useState("");
+  const { setShowModal } = useContext(ActionsModalContext);
 
   const handleClick = () => {
     setActiveChat(conversationUserId);
@@ -30,6 +32,7 @@ function Conversation({ name, conversationUserId }) {
         setMessages(response.data);
       });
     setWritingMessage("");
+    setShowModal(false);
   };
 
   useEffect(() => {

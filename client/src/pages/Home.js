@@ -8,7 +8,9 @@ import { ActionsModalContext } from "../contexts/ActionsModalContext";
 function Home() {
   const { showModal, setShowModal } = useContext(ActionsModalContext);
 
-  function handleClick(e) {}
+  function handleClick(e) {
+    showModal && setShowModal(false);
+  }
   return (
     <div className="home-container" onClick={(e) => handleClick(e)}>
       <ChatContextProvider>
