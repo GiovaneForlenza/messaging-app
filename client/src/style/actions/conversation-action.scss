@@ -1,11 +1,12 @@
 @import "../global.scss";
 
 .conversation-action-container {
-  display: none;
+  // display: none;
   color: white;
-  // width: 30px;
+  overflow: hidden;
+  width: 0px;
   height: 25px;
   font-size: 30px;
-  transition: 0.5s all;
+  transition: 0.3s all;
   z-index: 10;
 }

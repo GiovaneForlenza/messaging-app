@@ -19,21 +19,36 @@ function Conversation({ name, conversationUserId }) {
   } = useContext(ChatContext);
   const { userId } = useContext(UserContext);
   const [lastMessageSent, setLastMessageSent] = useState("");
-  const { setShowModal } = useContext(ActionsModalContext);
+  // const { setShowModal } = useContext(ActionsModalContext);
 
-  const handleClick = () => {
-    setActiveChat(conversationUserId);
-    setChatName(name);
-    axios
-      .post(serverURL + "/getMessages", {
-        userId,
-        conversationUserId,
-      })
-      .then((response) => {
-        setMessages(response.data);
-      });
-    setWritingMessage("");
-    setShowModal(false);
+  const { setShowModal, setModalX, setModalY, setModalType } =
+    useContext(ActionsModalContext);
+
+  let hasActionCalled = false;
+  const handleClick = (caller, e = null) => {
+    if (caller === "action") hasActionCalled = true;
+    console.log(caller);
+    if (caller == "conversation" && !hasActionCalled) {
+      setActiveChat(conversationUserId);
+      setChatName(name);
+      axios
+        .post(serverURL + "/getMessages", {
+          userId,
+          conversationUserId,
+        })
+        .then((response) => {
+          setMessages(response.data);
+        });
+      setWritingMessage("");
+      setShowModal(false);
+    } else if (caller === "action" && hasActionCalled) {
+      setModalX(e.clientX);
+      setModalY(e.clientY);
+      setModalType("conversation");
+      setShowModal(true);
+    }
+    console.log(hasActionCalled);
+    hasActionCalled = false;
   };
 
   useEffect(() => {
@@ -50,7 +65,7 @@ function Conversation({ name, conversationUserId }) {
       className={`conversation-container ${
         activeChat === conversationUserId && "active"
       }`}
-      onClick={handleClick}
+      onClick={() => handleClick("conversation")}
     >
       <ProfilePicture />
       <div className="content">
@@ -60,7 +75,7 @@ function Conversation({ name, conversationUserId }) {
         </div>
         <div className="line">
           <div className="last-message">{lastMessageSent}</div>
-          <ConversationAction />
+          <ConversationAction handleClick={handleClick} />
         </div>
       </div>
     </div>

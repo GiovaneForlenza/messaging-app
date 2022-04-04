@@ -33,9 +33,12 @@ function ActionsModal() {
   }, []);
   return (
     <div className="options-modal-container" style={{ top: top, left: left }}>
-      {console.log(optionsToShow)}
-      {optionsToShow.map((option) => {
-        return <div className="option-container">{option}</div>;
+      {optionsToShow.map((option, id) => {
+        return (
+          <div key={id} className="option-container">
+            {option}
+          </div>
+        );
       })}
     </div>
   );

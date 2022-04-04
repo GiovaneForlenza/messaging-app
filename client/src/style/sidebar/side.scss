@@ -4,7 +4,8 @@
   user-select: none;
   background: $color-dark-background-2;
   width: 30%;
-  // max-width: 400px;
+  min-width: 350px;
+  max-width: 450px;
   height: 100vh;
   border-right: 1px $color-gray-border solid;
   .profile-container {
@@ -14,6 +15,11 @@
       font-size: 23px;
     }
     border-right: 1px $color-gray-border solid;
+    .screen-size-container {
+      color: $color-text-primary;
+      margin-left: 30px;
+      font-size: 20px;
+    }
   }
   .search-container {
     padding: 10px;
@@ -50,4 +56,19 @@
     height: 85%;
     overflow-y: auto;
   }
+}
+
+@media only screen and (max-width: 600px) {
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 992px) {
+  .sidebar-container {
+    min-width: 350px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
 }

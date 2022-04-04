@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   padding: 10px;
   box-sizing: border-box;
   background: $color-dark-background-2;
@@ -13,7 +14,7 @@
     background: $color-dark-background-1;
   }
   &:hover .conversation-action-container {
-    display: inline-block;
+    width: 30px;
   }
   .content {
     width: 70%;

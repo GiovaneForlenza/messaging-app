@@ -18,7 +18,7 @@ function Sidebar() {
   const [users, setUsers] = useState([]);
 
   const { userId, userName, setUserName } = useContext(UserContext);
-
+  const [windowWidth, setWindowWidth] = useState(0);
   const setSearchFocus = (hasFocus) => {
     setDoesSearchHaveFocus(hasFocus);
   };
@@ -30,13 +30,22 @@ function Sidebar() {
     axios.get(serverURL + "/getUsers").then((response) => {
       setUsers(response.data);
     });
+    setWindowWidth(window.innerWidth);
   }, []);
+  window.addEventListener(
+    "resize",
+    function (event) {
+      setWindowWidth(window.innerWidth);
+    },
+    true
+  );
 
   return (
     <div className="sidebar-container">
       <div className="profile-container">
         <ProfilePicture />
         <div className="name">{userName}</div>
+        <div className="screen-size-container">{windowWidth}px</div>
       </div>
       <div className="search-container">
         <div className="search-box-container">
