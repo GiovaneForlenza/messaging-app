@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 
-import "../style/message-action.scss";
+import "../../style/actions/message-action.scss";
 
 import { IoIosArrowDown } from "react-icons/io";
-import OptionsModal from "./ActionsModal";
-import { ActionsModalContext } from "../contexts/ActionsModalContext";
+import { ActionsModalContext } from "../../contexts/ActionsModalContext";
 
 function MessageAction() {
   const { setShowModal, setModalX, setModalY, setModalType } =

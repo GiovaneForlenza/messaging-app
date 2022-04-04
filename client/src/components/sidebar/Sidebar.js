@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
-import "../style/side.scss";
-import "../style/global.scss";
+import "../../style/sidebar/side.scss";
+import "../../style/global.scss";
 
 import ProfilePicture from "./ProfilePicture";
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import Conversation from "./Conversation";
 
-import { serverURL } from "../variables";
+import { serverURL } from "../../variables";
 
 function Sidebar() {
   const [doesSearchHaveFocus, setDoesSearchHaveFocus] = useState(false);

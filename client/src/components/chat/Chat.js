@@ -1,16 +1,18 @@
 import React, { useEffect, useContext } from "react";
-import "../style/global.scss";
-import "../style/chat.scss";
-import "../style/messages.scss";
-import ProfilePicture from "./ProfilePicture";
+import "../../style/global.scss";
+import "../../style/chat/chat.scss";
+import "../../style/chat/messages.scss";
+import ProfilePicture from "../sidebar/ProfilePicture";
 import Message from "./Message";
-import { ChatContext } from "../contexts/ChatContext";
+import ChatAction from "../actions/ChatAction";
 
-import { serverURL } from "../variables";
+import { ChatContext } from "../../contexts/ChatContext";
 
-import { BsSearch, BsThreeDotsVertical } from "react-icons/bs";
+import { serverURL } from "../../variables";
+
+import { BsSearch } from "react-icons/bs";
 import SendMessageContainer from "./SendMessageContainer";
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 
 import axios from "axios";
 
@@ -57,6 +59,7 @@ function Chat() {
       document.getElementById("messages-anchor").scrollIntoView();
     }
   }, [messages]);
+
   return (
     <div className="chat-container">
       {activeChat ? (
@@ -71,7 +74,7 @@ function Chat() {
                 <BsSearch style={style} />
               </div>
               <div className="control">
-                <BsThreeDotsVertical style={style} />
+                <ChatAction />
               </div>
             </div>
           </div>

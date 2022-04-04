@@ -1,7 +1,7 @@
 import React from "react";
 import { CgProfile } from "react-icons/cg";
 
-import "../style/global.scss";
+import "../../style/global.scss";
 
 function ProfilePicture() {
   return (

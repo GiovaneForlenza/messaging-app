@@ -1,4 +1,4 @@
-@import "./global.scss";
+@import "../global.scss";
 
 .conversation-container {
   display: flex;
@@ -12,23 +12,30 @@
     cursor: pointer;
     background: $color-dark-background-1;
   }
+  &:hover .conversation-action-container {
+    display: inline-block;
+  }
   .content {
     width: 70%;
     .line {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      height: 30px;
       .name {
         color: $color-text-primary;
         font-size: 20px;
-        max-width: 200px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
       }
       .date-time,
       .last-message {
         color: $color-text-secondary;
+      }
+      .name,
+      .last-message {
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }

@@ -15,7 +15,8 @@ export const ActionsModalContextProvider = (props) => {
     "Star message",
     "Delete message",
   ];
-  const optionModalOptions = [
+
+  const chatModalOptions = [
     "Contact Info",
     "Block",
     "Select messages",
@@ -25,6 +26,13 @@ export const ActionsModalContextProvider = (props) => {
     "Delete chat",
   ];
 
+  const conversationOptions = [
+    "Archive chat",
+    "Mute notifications",
+    "Delete chat",
+    "Pin chat",
+    "Mark as read",
+  ];
   return (
     <ActionsModalContext.Provider
       value={{
@@ -37,7 +45,8 @@ export const ActionsModalContextProvider = (props) => {
         modalType,
         setModalType,
         messageModalOptions,
-        optionModalOptions,
+        chatModalOptions,
+        conversationOptions,
       }}
     >
       {props.children}

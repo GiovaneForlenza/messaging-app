@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import "../style/login.scss";
+import "../style/pages/login.scss";
 import { UserContext } from "../contexts/UserContext";
 import { serverURL } from "../variables";
 

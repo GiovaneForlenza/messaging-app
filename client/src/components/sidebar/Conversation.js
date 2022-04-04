@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import ProfilePicture from "./ProfilePicture";
-import "../style/conversation.scss";
-import { ChatContext } from "../contexts/ChatContext";
-import { serverURL } from "../variables";
+import "../../style/sidebar/conversation.scss";
+import { ChatContext } from "../../contexts/ChatContext";
+import { serverURL } from "../../variables";
 import axios from "axios";
-import { UserContext } from "../contexts/UserContext";
-import { getUpdatedMessages } from "../helper";
-import { ActionsModalContext } from "../contexts/ActionsModalContext";
+import { UserContext } from "../../contexts/UserContext";
+import { getUpdatedMessages } from "../../helper";
+import { ActionsModalContext } from "../../contexts/ActionsModalContext";
+import ConversationAction from "../actions/ConversationAction";
 
 function Conversation({ name, conversationUserId }) {
   const {
@@ -59,6 +60,7 @@ function Conversation({ name, conversationUserId }) {
         </div>
         <div className="line">
           <div className="last-message">{lastMessageSent}</div>
+          <ConversationAction />
         </div>
       </div>
     </div>

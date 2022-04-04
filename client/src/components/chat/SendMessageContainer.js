@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import "../style/global.scss";
-import "../style/chat.scss";
+import "../../style/global.scss";
+import "../../style/chat/chat.scss";
 import { BsEmojiSmile, BsFillMicFill } from "react-icons/bs";
 import { BiSend } from "react-icons/bi";
 import { AiOutlinePaperClip } from "react-icons/ai";
-import { ChatContext } from "../contexts/ChatContext";
+import { ChatContext } from "../../contexts/ChatContext";
 
 function SendMessageContainer({ sendMessage }) {
   const { writingMessage, setWritingMessage } = useContext(ChatContext);

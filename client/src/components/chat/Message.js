@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { BsCheck2All } from "react-icons/bs";
-import { ChatContext } from "../contexts/ChatContext";
-import { UserContext } from "../contexts/UserContext";
-import { getMessageTime } from "../helper";
-import "../style/messages.scss";
-import MessageAction from "./MessageAction";
+import { ChatContext } from "../../contexts/ChatContext";
+import { UserContext } from "../../contexts/UserContext";
+import { getMessageTime } from "../../helper";
+import "../../style/chat/messages.scss";
+import MessageAction from "../actions/MessageAction";
 function Message({ sent, seen, message }) {
   const { activeChat } = useContext(ChatContext);
   const { userId } = useContext(UserContext);
